@@ -80,12 +80,14 @@ def visualize_attentions(tokens, attentions):
     (starting count from 1).
     """
     # TODO: Update this function to produce diagrams for all layers and heads.
-    generate_diagram(
-        1,
-        1,
-        tokens,
-        attentions[0][0][0]
-    )
+    for layer_i, layer in enumerate(attentions):
+        for head_i, head in enumerate(layer[0]): # beam number alwasys 0
+            generate_diagram(
+                layer_i + 1,
+                head_i + 1,
+                tokens,
+                head
+            )
 
 
 def generate_diagram(layer_number, head_number, tokens, attention_weights):
